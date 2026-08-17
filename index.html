@@ -82,6 +82,39 @@
       font-size: 14px;
     }
 
+    .language-switcher {
+      display: inline-flex;
+      gap: 3px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--soft);
+    }
+
+    .language-switcher button {
+      min-width: 42px;
+      padding: 5px 9px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .language-switcher button[aria-pressed="true"] {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 1px 3px rgba(32, 33, 38, .12);
+    }
+
+    .language-switcher button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -139,20 +172,24 @@
 <body>
   <header>
     <div class="shell">
-      <p class="eyebrow">Evaness · Discord application</p>
-      <h1>Понятные правила.<br>Ответственное использование данных.</h1>
-      <p class="lead">Условия использования и политика конфиденциальности приложения Evaness для Discord.</p>
+      <p class="eyebrow" data-ru="Evaness · Discord application" data-en="Evaness · Discord application">Evaness · Discord application</p>
+      <h1><span data-ru="Понятные правила.<br>Ответственное использование данных." data-en="Clear rules.<br>Responsible data use.">Понятные правила.<br>Ответственное использование данных.</span></h1>
+      <p class="lead" data-ru="Условия использования и политика конфиденциальности приложения Evaness для Discord." data-en="Terms of use and privacy policy for the Evaness Discord application.">Условия использования и политика конфиденциальности приложения Evaness для Discord.</p>
       <div class="meta">
-        <span>Версия 1.0</span>
-        <span>Дата вступления в силу: 17 августа 2026 года</span>
+        <span data-ru="Версия 1.0" data-en="Version 1.0">Версия 1.0</span>
+        <span data-ru="Дата вступления в силу: 17 августа 2026 года" data-en="Effective date: August 17, 2026">Дата вступления в силу: 17 августа 2026 года</span>
+        <span class="language-switcher" aria-label="Выбор языка">
+          <button type="button" data-language="ru" aria-pressed="true">RU</button>
+          <button type="button" data-language="en" aria-pressed="false">EN</button>
+        </span>
       </div>
     </div>
   </header>
 
   <div class="shell">
-    <nav aria-label="Навигация по документу">
-      <a href="#terms">Условия использования</a>
-      <a href="#privacy">Конфиденциальность</a>
+    <nav aria-label="Навигация по документу" data-aria-ru="Навигация по документу" data-aria-en="Document navigation">
+      <a href="#terms" data-ru="Условия использования" data-en="Terms of use">Условия использования</a>
+      <a href="#privacy" data-ru="Конфиденциальность" data-en="Privacy">Конфиденциальность</a>
     </nav>
 
     <main>
@@ -222,5 +259,98 @@
       Evaness · Условия использования и политика конфиденциальности приложения Discord
     </footer>
   </div>
+  <template id="english-content">
+    <section id="terms">
+      <h2>Terms of Use</h2>
+      <p>These terms govern your use of the Evaness application and its related features on the Evaness Discord server. By using the application or remaining on the server, you agree to these terms, the <a href="https://discord.com/terms">Discord Terms of Service</a>, and the <a href="https://discord.com/guidelines">Discord Community Guidelines</a>.</p>
+
+      <h3>What the application does</h3>
+      <p>Evaness is a Discord application for community management and internal process automation. It provides server features, processes Discord events, and sends them to the application’s internal systems.</p>
+
+      <h3>Acceptable use</h3>
+      <p>You agree to use the application lawfully, responsibly, and in accordance with Discord’s rules. You must not disrupt the application, attempt to gain unauthorized access to its infrastructure, bypass its limits, or use it for harassment, spam, fraud, or distribution of malicious content.</p>
+
+      <h3>Availability and changes</h3>
+      <p>The application is provided as is. Evaness administrators may limit access, change features, or discontinue the application when necessary for security, maintenance, or compliance with Discord’s rules.</p>
+
+      <h3>User responsibility</h3>
+      <p>You are responsible for messages and other actions performed through your Discord account. The application does not replace the decisions of server administrators and does not guarantee the availability or preservation of user content.</p>
+
+      <h3>Contact</h3>
+      <p>For questions about the application, data deletion, or these terms, contact the administrators of the Evaness Discord server.</p>
+    </section>
+
+    <section id="privacy">
+      <h2>Privacy Policy</h2>
+      <p>We aim to process only the data needed to provide Evaness features. This policy explains what data is processed, why it is needed, and how to contact us.</p>
+
+      <div class="notice">
+        <strong>In short</strong>
+        Evaness does not sell user data or use it for advertising. Data is sent only to the application’s internal infrastructure and necessary processing services.
+      </div>
+
+      <h3>Data we process</h3>
+      <ul>
+        <li>Discord user, server, and channel IDs;</li>
+        <li>usernames, display names, and technical metadata related to an event;</li>
+        <li>message content for invite detection, activity statistics, and message edit or deletion events;</li>
+        <li>attachment metadata, including file name, type, size, and URL when available;</li>
+        <li>member join events and voice-channel join, leave, and move events;</li>
+        <li>staff, moderator, helper, and event-organizer application data received from configured Google Sheets.</li>
+      </ul>
+
+      <h3>Why we process it</h3>
+      <ul>
+        <li>to detect and process invitations to other Discord servers;</li>
+        <li>to support registration and onboarding for new members;</li>
+        <li>to produce activity statistics for text and voice channels;</li>
+        <li>to operate internal community and moderation tools;</li>
+        <li>to transfer events between Discord and Evaness services through RabbitMQ.</li>
+      </ul>
+
+      <h3>Storage and sharing</h3>
+      <p>Data is sent to Evaness internal infrastructure, including private RabbitMQ queues. Access is limited to services and administrators who need it to operate the application. We do not publish or sell this data to third parties.</p>
+
+      <h3>Third-party services</h3>
+      <p>The application uses the Discord API and may use Google Sheets to process role applications. These services have their own terms and privacy policies.</p>
+
+      <h3>Your requests</h3>
+      <p>To ask what data is associated with your activity, request correction or deletion, or ask a privacy question, contact the administrators of the Evaness Discord server. We will review the request within a reasonable time, subject to technical and legal limitations.</p>
+
+      <h3>Policy changes</h3>
+      <p>We may update this page when the application’s features or legal requirements change. The current version is always published at this address.</p>
+    </section>
+  </template>
+  <script>
+    (() => {
+      const main = document.querySelector("main");
+      const footer = document.querySelector("footer");
+      const englishContent = document.querySelector("#english-content").innerHTML;
+      const russianContent = main.innerHTML;
+      const buttons = document.querySelectorAll("[data-language]");
+      const translatable = document.querySelectorAll("[data-ru]");
+      const nav = document.querySelector("nav");
+
+      function setLanguage(language) {
+        const isEnglish = language === "en";
+        document.documentElement.lang = language;
+        document.title = isEnglish ? "Evaness — terms and privacy" : "Evaness — условия и конфиденциальность";
+        main.innerHTML = isEnglish ? englishContent : russianContent;
+        footer.textContent = isEnglish
+          ? "Evaness · Discord application terms of use and privacy policy"
+          : "Evaness · Условия использования и политика конфиденциальности приложения Discord";
+        translatable.forEach((element) => {
+          element.innerHTML = element.dataset[isEnglish ? "en" : "ru"];
+        });
+        nav.setAttribute("aria-label", nav.dataset[isEnglish ? "ariaEn" : "ariaRu"]);
+        buttons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.language === language)));
+        localStorage.setItem("evaness-language", language);
+      }
+
+      buttons.forEach((button) => button.addEventListener("click", () => setLanguage(button.dataset.language)));
+      const savedLanguage = localStorage.getItem("evaness-language");
+      if (savedLanguage === "en") setLanguage("en");
+    })();
+  </script>
 </body>
 </html>
